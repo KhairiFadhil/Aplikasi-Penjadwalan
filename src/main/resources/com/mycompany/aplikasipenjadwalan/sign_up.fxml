@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER" spacing="15"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mycompany.aplikasipenjadwalan.SignUpController"
+      style="-fx-padding: 40;">
+
+    <Label text="Buat Akun Baru"
+           style="-fx-font-size:30px; -fx-font-weight:bold;"/>
+
+    <Label text="Nama Pengguna" style="-fx-font-size:14px;"/>
+    <TextField fx:id="tfUsername"
+               promptText="Pilih Username Unik"
+               maxWidth="300"/>
+
+    <Label text="Kata Sandi" style="-fx-font-size:14px;"/>
+    <PasswordField fx:id="tfPassword"
+                   promptText="Minimal 6 Karakter"
+                   maxWidth="300"/>
+
+    <Label text="Konfirmasi Kata Sandi" style="-fx-font-size:14px;"/>
+    <PasswordField fx:id="tfConfirm"
+                   promptText="Ulangi Kata Sandi"
+                   maxWidth="300"/>
+
+    <Button text="Daftar Akun"
+            onAction="#handleSignUp"
+            style="-fx-background-color:#2FA843; -fx-text-fill:white; -fx-font-size:16px;"
+            maxWidth="300"/>
+
+    <Label fx:id="lblError" textFill="red"/>
+
+    <Hyperlink text="Sudah punya akun? Sign In"
+               onAction="#goToLogin"/>
+
+</VBox>

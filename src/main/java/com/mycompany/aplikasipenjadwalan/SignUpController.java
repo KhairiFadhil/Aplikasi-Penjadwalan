@@ -6,15 +6,15 @@ package com.mycompany.aplikasipenjadwalan;
 
 import java.io.IOException;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.Label;
 
 /**
  *
  * @author raidf
  */
-public class LoginController {
+public class SignUpController {
     
     @FXML
     private TextField tfUsername;
@@ -23,16 +23,20 @@ public class LoginController {
     private PasswordField tfPassword;
     
     @FXML
-    private Label lblError;
-     
+    private PasswordField tfConfirm;
+    
     @FXML
-    private void handleLogin() throws IOException {
-         System.out.println("Username : " + tfUsername);
-         System.out.println("Password : " + tfPassword);
+    private Label lblError;
+    
+    @FXML
+    private void handleSignUp() throws IOException {
+        System.out.println("Username : " + tfUsername);
+        System.out.println("Password : " + tfPassword);
+        System.out.println("Confirm Password : " + tfConfirm);
     }
     
     @FXML
-    private void goToSignUp() throws IOException {
-        App.setRoot("sign_up");
+    private void goToLogin() throws IOException {
+        App.setRoot("sign_in");
     }
 }

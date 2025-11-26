@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+
+<VBox alignment="CENTER" spacing="15"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.mycompany.aplikasipenjadwalan.LoginController"
+      style="-fx-padding: 40;">
+
+    <Label text="Selamat Datang"
+           style="-fx-font-size:30px; -fx-font-weight:bold;"/>
+
+    <Label text="Silahkan masuk ke akun Anda!"
+           style="-fx-font-size:14px; -fx-text-fill:#777;"/>
+
+    <TextField fx:id="tfUsername"
+               promptText="Username"
+               maxWidth="300"/>
+
+    <PasswordField fx:id="tfPassword"
+                   promptText="Password"
+                   maxWidth="300"/>
+
+    <Button text="Masuk"
+            onAction="#handleLogin"
+            style="-fx-background-color:#2FA843; -fx-text-fill:white; -fx-font-size:16px;"
+            maxWidth="300"/>
+
+    <Label fx:id="lblError" textFill="red"/>
+
+    <Hyperlink text="Belum punya akun? Daftar"
+               onAction="#goToSignUp"/>
+
+</VBox>
