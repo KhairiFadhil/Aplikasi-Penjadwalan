@@ -13,7 +13,7 @@ public class Jadwal {
     private int id;
     private int userId;
     private String kodeMatkul;
-    private String namaDosen;
+    private String idDosen;
     private String ruang;
     private LocalDate tanggal;
     private LocalTime jamMulai;
@@ -21,11 +21,11 @@ public class Jadwal {
     private String deskripsi;
     
     public Jadwal(int id, int userId, String kodeMatkul, 
-        String namaDosen, String ruang, LocalDate tanggal, LocalTime jamMulai, LocalTime jamSelesai, String deskripsi){
+        String idDosen, String ruang, LocalDate tanggal, LocalTime jamMulai, LocalTime jamSelesai, String deskripsi){
         this.id = id;
         this.userId = userId;
         this.kodeMatkul = kodeMatkul;
-        this.namaDosen = namaDosen;
+        this.idDosen = idDosen;
         this.ruang = ruang;
         this.tanggal = tanggal;
         this.jamMulai = jamMulai;
@@ -56,12 +56,12 @@ public class Jadwal {
         this.kodeMatkul = kodeMatkul;
     }
 
-    public String getNamaDosen() {
-        return namaDosen;
+    public String getIdDosen() {
+        return idDosen;
     }
 
-    public void setNamaDosen(String namaDosen) {
-        this.namaDosen = namaDosen;
+    public void setIdDosen(String idDosen) {
+        this.idDosen = idDosen;
     }
 
     public String getRuang() {

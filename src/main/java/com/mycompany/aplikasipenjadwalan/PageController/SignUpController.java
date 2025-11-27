@@ -4,6 +4,8 @@
  */
 package com.mycompany.aplikasipenjadwalan;
 
+import com.mycompany.aplikasipenjadwalan.DBController.AksesDBUser;
+import com.mycompany.aplikasipenjadwalan.DatabaseConnection;
 import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -30,9 +32,13 @@ public class SignUpController {
     
     @FXML
     private void handleSignUp() throws IOException {
-        System.out.println("Username : " + tfUsername);
-        System.out.println("Password : " + tfPassword);
-        System.out.println("Confirm Password : " + tfConfirm);
+      boolean success = new AksesDBUser(DatabaseConnection.connect()).register(tfUsername.getText(), tfPassword.getText());
+      if (success) {
+         lblError.setText("Berhasil mendaftar akun");
+         App.setRoot("sign_in");
+      } else {
+         lblError.setText("Gagal mendaftar akun");
+      }
     }
     
     @FXML

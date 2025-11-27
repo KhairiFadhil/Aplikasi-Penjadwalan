@@ -8,28 +8,28 @@ package com.mycompany.aplikasipenjadwalan;
  *
  * @author raidf
  */
-public class MataKuliah {
-    private String kodeMatkul;
+public class Matkul {
+    private int idMatkul;
     private String namaMatkul;
-     
-    public MataKuliah(String idMatkul, String namaMatkul){
-        this.kodeMatkul = idMatkul;
+
+    public Matkul(int idMatkul, String namaMatkul) {
+        this.idMatkul = idMatkul;
         this.namaMatkul = namaMatkul;
     }
-       public String getKodeMatkul() {
-        return kodeMatkul;
-    }
 
-    public void setIdMatkul(String idMatkul) {
-        this.kodeMatkul = idMatkul;
+    public int getIdMatkul() {
+        return idMatkul;
+    }
+    
+    public void setIdMatkul(int idMatkul) {
+        this.idMatkul = idMatkul;
     }
 
     public String getNamaMatkul() {
         return namaMatkul;
     }
-
+    
     public void setNamaMatkul(String namaMatkul) {
         this.namaMatkul = namaMatkul;
-    } 
-    
+    }
 }

@@ -1,5 +1,6 @@
-package com.mycompany.aplikasipenjadwalan;
+package com.mycompany.aplikasipenjadwalan.DBController;
    
+import com.mycompany.aplikasipenjadwalan.Jadwal;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -37,7 +38,7 @@ public class AksesDBJadwal {
    }
 
    public void tambahJadwal(Jadwal jadwal) {
-      String query = "INSERT INTO jadwal (userId, idMatkul, ruang, tanggal, kodeMatkul, namaDosen, jamMulai, jamSelesai, deskripsi) "
+      String query = "INSERT INTO jadwal (userId, kodeMatkul, ruang, tanggal, idDosen, jamMulai, jamSelesai, deskripsi) "
             + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
       try (PreparedStatement pst = connection.prepareStatement(query)) {
@@ -45,8 +46,7 @@ public class AksesDBJadwal {
          pst.setString(2, jadwal.getKodeMatkul());
          pst.setString(3, jadwal.getRuang());
          pst.setDate(4, Date.valueOf(jadwal.getTanggal()));
-         pst.setString(5, jadwal.getKodeMatkul());
-         pst.setString(6, jadwal.getNamaDosen());
+         pst.setString(6, jadwal.getIdDosen());
          pst.setTime(7, Time.valueOf(jadwal.getJamMulai()));
          pst.setTime(8, Time.valueOf(jadwal.getJamSelesai()));
          pst.setString(9, jadwal.getDeskripsi());
