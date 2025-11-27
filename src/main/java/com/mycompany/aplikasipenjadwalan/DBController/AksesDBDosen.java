@@ -37,6 +37,20 @@ public class AksesDBDosen {
         }
         return null;
     }
+    
+    public Dosen getDosenByNama(String namaDosen) {
+        String query = "SELECT * FROM dosen WHERE namaDosen = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, namaDosen);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public void addDosen(Dosen dosen) {
         String query = "INSERT INTO dosen (idDosen, namaDosen) VALUES (?, ?)";

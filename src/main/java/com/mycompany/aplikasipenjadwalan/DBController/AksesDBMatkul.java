@@ -25,12 +25,26 @@ public class AksesDBMatkul {
     }
 
     public Matkul getMatkulByID(String id) {
-        String query = "SELECT * FROM matkul WHERE idMatkul = ?";
+        String query = "SELECT * FROM mata_kuliah WHERE kodeMatkul = ?";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {
-                return new Matkul(rs.getInt("idMatkul"), rs.getString("namaMatkul"));
+                return new Matkul(rs.getInt("kodeMatkul"), rs.getString("namaMatkul"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+    
+    public Matkul getMatkulByNama(String namaMatkul) {
+        String query = "SELECT * FROM mata_kuliah WHERE namaMatkul = ?";
+        try (PreparedStatement pst = connection.prepareStatement(query)) {
+            pst.setString(1, namaMatkul);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                return new Matkul(rs.getInt("kodeMatkul"), rs.getString("namaMatkul"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -40,11 +54,11 @@ public class AksesDBMatkul {
     
     public List<Matkul> getAllMatkul() {
         List<Matkul> matkulList = new ArrayList<>();
-        String query = "SELECT * FROM matkul ORDER BY namaMatkul";
+        String query = "SELECT * FROM mata_kuliah ORDER BY namaMatkul";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                matkulList.add(new Matkul(rs.getInt("idMatkul"), rs.getString("namaMatkul")));
+                matkulList.add(new Matkul(rs.getInt("kodeMatkul"), rs.getString("namaMatkul")));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -53,9 +67,9 @@ public class AksesDBMatkul {
     }
 
     public void addMatkul(Matkul matkul) {
-        String query = "INSERT INTO matkul (idMatkul, namaMatkul) VALUES (?, ?)";
+        String query = "INSERT INTO matkul (kodeMatkul, namaMatkul) VALUES (?, ?)";
         try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setInt(1, matkul.getIdMatkul());
+            pst.setInt(1, matkul.getKodeMatkul());
             pst.setString(2, matkul.getNamaMatkul());
             pst.executeUpdate();
         } catch (SQLException e) {

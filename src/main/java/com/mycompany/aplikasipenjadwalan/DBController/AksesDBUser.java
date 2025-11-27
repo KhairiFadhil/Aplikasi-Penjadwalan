@@ -13,10 +13,10 @@ public class AksesDBUser {
       this.connection = connection;
    }
 
-   public User cekLogin(String nama, String password) {
-      String query = "SELECT * FROM user WHERE nama = ? AND password = ?";
+   public User cekLogin(String username, String password) {
+      String query = "SELECT * FROM users WHERE username = ? AND password = ?";
       try (PreparedStatement pst = connection.prepareStatement(query)) {
-         pst.setString(1, nama);
+         pst.setString(1, username);
          pst.setString(2, password);
          ResultSet rs = pst.executeQuery();
          if (rs.next()) {
@@ -29,8 +29,8 @@ public class AksesDBUser {
    }
 
    public boolean register(String username, String password) {
-      if(cekAkunByID(username) == null) {
-         String query = "INSERT INTO user (username, password) VALUES (?, ?)";
+      if(! cekAkunByUsername(username)) {
+         String query = "INSERT INTO users (username, password) VALUES (?, ?)";
          try (PreparedStatement pst = connection.prepareStatement(query)) {
             pst.setString(1, username);
             pst.setString(2, password);
@@ -45,17 +45,16 @@ public class AksesDBUser {
       }
    }
 
-   public User cekAkunByID(String id) {
-      String query = "SELECT * FROM user WHERE userId = ?";
+
+   public boolean cekAkunByUsername(String username) {
+      String query = "SELECT * FROM users WHERE username = ?";
       try (PreparedStatement pst = connection.prepareStatement(query)) {
-         pst.setString(1, id);
+         pst.setString(1, username);
          ResultSet rs = pst.executeQuery();
-         if (rs.next()) {
-            return new User(rs.getInt("userId"), rs.getString("username"), rs.getString("password"));
-         }
+         return rs.next();
       } catch (SQLException e) {
          e.printStackTrace();
+         return false;
       }
-      return null;
    }
 }

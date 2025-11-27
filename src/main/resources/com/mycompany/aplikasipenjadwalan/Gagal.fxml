@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="600" prefWidth="900" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1">
+
+    <!-- CLOSE BUTTON (X kecil kanan atas) -->
+    <AnchorPane layoutX="840" layoutY="20" prefHeight="40" prefWidth="40" style="-fx-cursor: hand;">
+        <Line endX="30" endY="30" startX="10" startY="10" style="-fx-stroke: black; -fx-stroke-width:3;" />
+        <Line endX="10" endY="30" startX="30" startY="10" style="-fx-stroke: black; -fx-stroke-width:3;" />
+    </AnchorPane>
+
+    <!-- IKON LINGKARAN MERAH -->
+    <Circle fill="#FF1B1B" layoutX="450" layoutY="260" radius="140" />
+
+    <!-- IKON X PUTIH BESAR -->
+    <Line endX="540" endY="350" startX="360" startY="170" style="-fx-stroke: white; -fx-stroke-width:35; -fx-stroke-line-cap: round;" />
+
+    <Line endX="360" endY="350" startX="540" startY="170" style="-fx-stroke: white; -fx-stroke-width:35; -fx-stroke-line-cap: round;" />
+
+    <!-- TEXT ERROR -->
+    <Label layoutX="230" layoutY="400" style="-fx-font-size:32px; -fx-text-fill:#FF1B1B; -fx-font-weight:bold;" text="Gagal di tambahkan karna" />
+
+    <Label layoutX="380" layoutY="450" style="-fx-font-size:40px; -fx-text-fill:#FF1B1B; -fx-font-weight:bold;" text="“ERROR”" />
+
+</AnchorPane>

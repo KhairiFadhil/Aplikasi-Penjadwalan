@@ -11,9 +11,11 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private static Stage primaryStage;
 
     @Override
     public void start(Stage stage) throws IOException {
+        primaryStage = stage;
         DatabaseConnection.connect();
         scene = new Scene(loadFXML("sign_in"), 640, 480);
         stage.setScene(scene);
@@ -22,6 +24,12 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+
+        if ("jadwal".equals(fxml)) {
+            primaryStage.setMaximized(true);
+        } else {
+            primaryStage.setMaximized(false);
+        }
     }
 
     private static Parent loadFXML(String fxml) throws IOException {

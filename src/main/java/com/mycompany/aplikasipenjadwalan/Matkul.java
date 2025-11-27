@@ -9,20 +9,20 @@ package com.mycompany.aplikasipenjadwalan;
  * @author raidf
  */
 public class Matkul {
-    private int idMatkul;
+    private int kodeMatkul;
     private String namaMatkul;
 
-    public Matkul(int idMatkul, String namaMatkul) {
-        this.idMatkul = idMatkul;
+    public Matkul(int kodeMatkul, String namaMatkul) {
+        this.kodeMatkul = kodeMatkul;
         this.namaMatkul = namaMatkul;
     }
 
-    public int getIdMatkul() {
-        return idMatkul;
+    public int getKodeMatkul() {
+        return kodeMatkul;
     }
     
-    public void setIdMatkul(int idMatkul) {
-        this.idMatkul = idMatkul;
+    public void setKodeMatkul(int kodeMatkul) {
+        this.kodeMatkul = kodeMatkul;
     }
 
     public String getNamaMatkul() {

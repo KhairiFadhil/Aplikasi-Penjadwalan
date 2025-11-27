@@ -27,6 +27,11 @@ public class LoginController {
     private Label lblError;
      
     @FXML
+    /*ini action ketika user memencet login 
+      -pas di pencet nanti dia bakal bikin instance objek user buat nampung hasil login
+      dia ngecek login dengan ngabmil username dari input username di page login, dan password dari input password di page login
+    (perlu di inget ada dia databaseConnection.connect dulu itu nmaksudnya dia akan bikin koneksi dulu ke db, baru dia panggil cek login)
+    */
     private void handleLogin() throws IOException {
          User user = new AksesDBUser(DatabaseConnection.connect()).cekLogin(tfUsername.getText(), tfPassword.getText());
          if (user != null) {

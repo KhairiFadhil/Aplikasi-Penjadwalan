@@ -17,16 +17,16 @@ public class AksesDBJadwal {
       this.connection = connection;
    }
 
-   public List<Jadwal> getJadwalByUserID(String userId) {
+   public List<Jadwal> getJadwalByUserID(int userId) {
       List<Jadwal> jadwals = new ArrayList<>();
       String query = "SELECT * FROM jadwal WHERE userId = ?";
 
       try (PreparedStatement pst = connection.prepareStatement(query)) {
-         pst.setString(1, userId);
+         pst.setInt(1, userId);
          ResultSet rs = pst.executeQuery();
          while (rs.next()) {
             Jadwal jadwal = new Jadwal(rs.getInt("id"), rs.getInt("userId"), rs.getString("kodeMatkul"),
-                  rs.getString("namaDosen"), rs.getString("ruang"), rs.getDate("tanggal").toLocalDate(),
+                  rs.getString("idDosen"), rs.getString("ruang"), rs.getDate("tanggal").toLocalDate(),
                   rs.getTime("jamMulai").toLocalTime(), rs.getTime("jamSelesai").toLocalTime(),
                   rs.getString("deskripsi"));
             jadwals.add(jadwal);
@@ -39,17 +39,47 @@ public class AksesDBJadwal {
 
    public void tambahJadwal(Jadwal jadwal) {
       String query = "INSERT INTO jadwal (userId, kodeMatkul, ruang, tanggal, idDosen, jamMulai, jamSelesai, deskripsi) "
-            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
       try (PreparedStatement pst = connection.prepareStatement(query)) {
          pst.setInt(1, jadwal.getUserId());
          pst.setString(2, jadwal.getKodeMatkul());
          pst.setString(3, jadwal.getRuang());
          pst.setDate(4, Date.valueOf(jadwal.getTanggal()));
-         pst.setString(6, jadwal.getIdDosen());
-         pst.setTime(7, Time.valueOf(jadwal.getJamMulai()));
-         pst.setTime(8, Time.valueOf(jadwal.getJamSelesai()));
-         pst.setString(9, jadwal.getDeskripsi());
+         pst.setString(5, jadwal.getIdDosen());
+         pst.setTime(6, Time.valueOf(jadwal.getJamMulai()));
+         pst.setTime(7, Time.valueOf(jadwal.getJamSelesai()));
+         pst.setString(8, jadwal.getDeskripsi());
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+   
+   public void updateJadwal(Jadwal jadwal) {
+      String query = "UPDATE jadwal SET kodeMatkul = ?, ruang = ?, tanggal = ?, idDosen = ?, "
+            + "jamMulai = ?, jamSelesai = ?, deskripsi = ? WHERE id = ?";
+      
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setString(1, jadwal.getKodeMatkul());
+         pst.setString(2, jadwal.getRuang());
+         pst.setDate(3, Date.valueOf(jadwal.getTanggal()));
+         pst.setString(4, jadwal.getIdDosen());
+         pst.setTime(5, Time.valueOf(jadwal.getJamMulai()));
+         pst.setTime(6, Time.valueOf(jadwal.getJamSelesai()));
+         pst.setString(7, jadwal.getDeskripsi());
+         pst.setInt(8, jadwal.getId());
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+   
+   public void deleteJadwal(int id) {
+      String query = "DELETE FROM jadwal WHERE id = ?";
+      
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setInt(1, id);
          pst.executeUpdate();
       } catch (SQLException e) {
          e.printStackTrace();
