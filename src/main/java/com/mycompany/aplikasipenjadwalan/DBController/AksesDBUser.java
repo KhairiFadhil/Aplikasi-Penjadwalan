@@ -20,7 +20,7 @@ public class AksesDBUser {
          pst.setString(2, password);
          ResultSet rs = pst.executeQuery();
          if (rs.next()) {
-            return new User(rs.getInt("userId"), rs.getString("username"), rs.getString("password"));
+            return new User(rs.getInt("userId"), rs.getString("username"), rs.getString("password"), rs.getString("role"));
          }
       } catch (SQLException e) {
          e.printStackTrace();

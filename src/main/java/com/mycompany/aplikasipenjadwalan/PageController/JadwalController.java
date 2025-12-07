@@ -11,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
 import java.util.List;
 import javafx.collections.FXCollections;
@@ -63,7 +62,7 @@ public class JadwalController {
     @FXML
     private Button btnDelete;
     @FXML
-    private Hyperlink linkLoginAdmin;
+    private Button btnLoginAsAdmin;
     @FXML
     private TableView<Jadwal> jadwalTable;
     @FXML
@@ -92,6 +91,21 @@ public class JadwalController {
         loadStatus();
         setupListenerTabel();
         loadInfoSingkat();
+        initiateAdmin();
+    }   
+    @FXML
+    private void initiateAdmin(){
+//        System.out.println(sesiUser.getCurrentUser().getRole());
+        if(sesiUser.getCurrentUser().getRole().equals("admin")){
+          btnLoginAsAdmin.setVisible(true);
+        } else { 
+          btnLoginAsAdmin.setVisible(false);
+        }
+    }
+ 
+    @FXML
+    private void handleLoginAsAdmin() throws IOException {
+        App.setRoot("dashboard_main");
     }
     
     private void setupListenerTabel() {
