@@ -63,17 +63,6 @@ public class AksesDBDosen {
       }
    }
 
-   public void addDosen(Dosen dosen) {
-      String query = "INSERT INTO dosen (idDosen, namaDosen) VALUES (?, ?)";
-      try (PreparedStatement pst = connection.prepareStatement(query)) {
-         pst.setInt(1, dosen.getIdDosen());
-         pst.setString(2, dosen.getNamaDosen());
-         pst.executeUpdate();
-      } catch (SQLException e) {
-         e.printStackTrace();
-      }
-   }
-
    public void updateDosen(Dosen dosen) {
       String query = "UPDATE dosen SET namaDosen = ? WHERE idDosen = ?";
       try (PreparedStatement pst = connection.prepareStatement(query)) {
