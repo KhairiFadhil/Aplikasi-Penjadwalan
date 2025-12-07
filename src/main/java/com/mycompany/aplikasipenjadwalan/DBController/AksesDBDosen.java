@@ -18,62 +18,94 @@ import com.mycompany.aplikasipenjadwalan.Dosen;
  * @author raidf
  */
 public class AksesDBDosen {
-    private Connection connection;
+   private Connection connection;
 
-    public AksesDBDosen(Connection connection) {
-       this.connection = connection;
-    }
-    
-    public Dosen getDosenByID(String id) {
-        String query = "SELECT * FROM dosen WHERE idDosen = ?";
-        try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, id);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                return new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-    
-    public Dosen getDosenByNama(String namaDosen) {
-        String query = "SELECT * FROM dosen WHERE namaDosen = ?";
-        try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setString(1, namaDosen);
-            ResultSet rs = pst.executeQuery();
-            if (rs.next()) {
-                return new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen"));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+   public AksesDBDosen(Connection connection) {
+      this.connection = connection;
+   }
 
-    public void addDosen(Dosen dosen) {
-        String query = "INSERT INTO dosen (idDosen, namaDosen) VALUES (?, ?)";
-        try (PreparedStatement pst = connection.prepareStatement(query)) {
-            pst.setInt(1, dosen.getIdDosen());
-            pst.setString(2, dosen.getNamaDosen());
-            pst.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public List<Dosen> getAllDosen() {
-        List<Dosen> dosenList = new ArrayList<>();
-        String query = "SELECT * FROM dosen ORDER BY namaDosen";
-        try (PreparedStatement pst = connection.prepareStatement(query)) {
-            ResultSet rs = pst.executeQuery();
-            while (rs.next()) {
-                dosenList.add(new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen")));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return dosenList;
-    }
+   public Dosen getDosenByID(String id) {
+      String query = "SELECT * FROM dosen WHERE idDosen = ?";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setString(1, id);
+         ResultSet rs = pst.executeQuery();
+         if (rs.next()) {
+            return new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen"));
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+   public Dosen getDosenByNama(String namaDosen) {
+      String query = "SELECT * FROM dosen WHERE namaDosen = ?";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setString(1, namaDosen);
+         ResultSet rs = pst.executeQuery();
+         if (rs.next()) {
+            return new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen"));
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return null;
+   }
+
+   public void addDosen(Dosen dosen) {
+      String query = "INSERT INTO dosen (idDosen, namaDosen) VALUES (?, ?)";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setInt(1, dosen.getIdDosen());
+         pst.setString(2, dosen.getNamaDosen());
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void addDosen(Dosen dosen) {
+      String query = "INSERT INTO dosen (idDosen, namaDosen) VALUES (?, ?)";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setInt(1, dosen.getIdDosen());
+         pst.setString(2, dosen.getNamaDosen());
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void updateDosen(Dosen dosen) {
+      String query = "UPDATE dosen SET namaDosen = ? WHERE idDosen = ?";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setString(1, dosen.getNamaDosen());
+         pst.setInt(2, dosen.getIdDosen());
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public void deleteDosen(int idDosen) {
+      String query = "DELETE FROM dosen WHERE idDosen = ?";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         pst.setInt(1, idDosen);
+         pst.executeUpdate();
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+   }
+
+   public List<Dosen> getAllDosen() {
+      List<Dosen> dosenList = new ArrayList<>();
+      String query = "SELECT * FROM dosen ORDER BY namaDosen";
+      try (PreparedStatement pst = connection.prepareStatement(query)) {
+         ResultSet rs = pst.executeQuery();
+         while (rs.next()) {
+            dosenList.add(new Dosen(rs.getInt("idDosen"), rs.getString("namaDosen")));
+         }
+      } catch (SQLException e) {
+         e.printStackTrace();
+      }
+      return dosenList;
+   }
 }
