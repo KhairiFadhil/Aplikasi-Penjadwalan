@@ -30,4 +30,9 @@ public class DashboardMainController {
         sesiUser.clearSesi();
         App.setRoot("sign_in");
     }
+    
+    @FXML
+    private void handleBack() throws IOException {
+        App.setRoot("jadwal");
+    }
 }

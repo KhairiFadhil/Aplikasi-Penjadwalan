@@ -10,9 +10,10 @@
 <BorderPane prefHeight="650" prefWidth="1200" style="-fx-background-color:#E2EEFF;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.aplikasipenjadwalan.DashboardMainController">
     <!-- TOP BAR -->
     <top>
-        <HBox alignment="CENTER_LEFT" prefHeight="60" style="-fx-background-color:white;">
+        <HBox alignment="CENTER_LEFT" prefHeight="60" spacing="15" style="-fx-background-color:white;">
             <padding><Insets left="20" /></padding>
             <children>
+                <Button style="-fx-background-color:#4C8FE2; -fx-text-fill:white; -fx-background-radius:5;" text="← Back" onAction="#handleBack" />
                 <Label style="-fx-font-size:18; -fx-font-weight:bold;" text="🎓 College Appointment" />
             </children>
         </HBox>
